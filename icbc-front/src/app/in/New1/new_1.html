@@ -1,0 +1,118 @@
+<div class="col-md-6" style="height:100%;">
+	<!-- <img src="../img/d.png" width="600px" alt=""> -->
+	<!-- <div id="main" style="width: 400px;height:400px;"></div> -->
+	<div id="main" style="width: 100%;height:100%;"></div>
+    <script type="text/javascript">
+    
+  </script>
+</div>
+<div class="col-md-6">
+	<table class="table table-hover" >
+            <tr class="success" id="showTransTableTitle">
+                <td>交易ID</td>
+                <td>事件日期</td>
+                <td>转入卡号</td>
+                <td>转出卡号</td>
+                <td>交易金额</td>
+                <td>设备认证</td>
+            </tr>
+            <tr class="info" ng-repeat="item in items | orderBy:'-id'">
+                <td>{{item.id}}</td>
+                <td>{{item.eventDt|date:'y-M-d'}}</td>
+                <td>{{item.tranInCardNum}}</td>
+                <td>{{item.tranOutCardNum}}</td>
+                <td>{{item.txAmt}}</td>
+                <td>{{item.equSign}}</td>
+            </tr>
+        </table>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>
+					编号
+				</th>
+				<th>
+					产品
+				</th>
+				<th>
+					交付时间
+				</th>
+				<th>
+					状态
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>
+					1
+				</td>
+				<td>
+					TB - Monthly
+				</td>
+				<td>
+					01/04/2012
+				</td>
+				<td>
+					Default
+				</td>
+			</tr>
+			<tr class="success">
+				<td>
+					1
+				</td>
+				<td>
+					TB - Monthly
+				</td>
+				<td>
+					01/04/2012
+				</td>
+				<td>
+					Approved
+				</td>
+			</tr>
+			<tr class="error">
+				<td>
+					2
+				</td>
+				<td>
+					TB - Monthly
+				</td>
+				<td>
+					02/04/2012
+				</td>
+				<td>
+					Declined
+				</td>
+			</tr>
+			<tr class="warning">
+				<td>
+					3
+				</td>
+				<td>
+					TB - Monthly
+				</td>
+				<td>
+					03/04/2012
+				</td>
+				<td>
+					Pending
+				</td>
+			</tr>
+			<tr class="info">
+				<td>
+					4
+				</td>
+				<td>
+					TB - Monthly
+				</td>
+				<td>
+					04/04/2012
+				</td>
+				<td>
+					Call in to confirm
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

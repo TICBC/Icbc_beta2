@@ -1,0 +1,35 @@
+<div class="left_tra">
+	<div id="main" style="width: 100%;height:100%;"></div>
+    <script type="text/javascript">
+    
+  </script>
+</div>
+</div>
+<div class="right_tra">
+	<div class="right_up_tra" style="overflow-y:scroll;">
+        <table class="table table-hover" >
+            <tr class="info" id="showTransTableTitle">
+                <td>交易ID</td>
+                <td>事件日期</td>
+                <td>转入卡号</td>
+                <td>转出卡号</td>
+                <td>交易金额</td>
+                <td>设备认证</td>
+            </tr>
+            <tr class="info" ng-repeat="item in items | orderBy:'-id'" ng-click="findInMap(item)">
+                <td>{{item.id}}</td>
+                <td>{{item.eventDt|date:'y-M-d'}}</td>
+                <td>{{item.tranInCardNum}}</td>
+                <td>{{item.tranOutCardNum}}</td>
+                <td>{{item.txAmt}}</td>
+                <td>{{item.equSign}}</td>
+            </tr>
+        </table>
+	</div>
+	<div class="rigth_down_tra">
+	<div id="main2" style="width: 100%;height:100%;"></div>
+	<script type="text/javascript">
+	
+	</script>
+	</div>
+</div>

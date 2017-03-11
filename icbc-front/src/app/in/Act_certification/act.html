@@ -1,0 +1,239 @@
+<div class="mid_act">
+  <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="main" style="width: 100%;height:100%;"></div>
+<script type="text/javascript">
+    var myChart = echarts.init(document.getElementById('main'));
+    var data = [
+     {name: '安徽省', value: 6},
+     {name: '北京市', value: 3},
+     {name: '重庆市', value: 1},
+     {name: '福建省', value: 3},
+     {name: '甘肃省', value: 3},
+     {name: '广东省', value: 5},
+     {name: '广西壮族自治', value: 0},
+     {name: '贵州省', value: 6},
+     {name: '河南省', value: 2},
+     {name: '河北省', value: 2},
+     {name: '黑龙江省', value: 3},
+     {name: '湖北省', value: 2},
+     {name: '湖南省', value: 3},
+     {name: '吉林省', value: 18},
+     {name: '江苏省', value: 4},
+     {name: '江西省', value: 7},
+     {name: '辽宁省', value: 3},
+     {name: '内蒙古', value: 2},
+     {name: '宁夏回族自治区', value: 0},
+     {name: '青海省', value: 1},
+     {name: '山东省', value: 6},
+     {name: '山西省', value: 0},
+     {name: '陕西省', value: 3},
+     {name: '上海市', value: 3},
+     {name: '海南', value: 7},
+     {name: '四川省', value: 8},
+     {name: '天津市', value: 7},
+     {name: '西藏自治区', value: 0},
+     {name: '新疆维吾尔自治区', value: 0},
+     {name: '云南省', value: 4},
+     {name: '浙江省', value: 2},
+     {name: '澳门', value: 3},
+     {name: '台湾省', value: 3}
+];
+
+var geoCoordMap = {
+      '安徽省': [117.17, 31.52],
+      '北京市': [116.24, 39.55],
+      '重庆市': [106.54, 29.59],
+      '福建省': [119.18, 26.05],
+      '甘肃省': [103.51, 36.04],
+      '广东省': [113.14, 23.08],
+      '广西壮族自治': [108.19, 22.48],
+      '贵州省': [106.42, 26.35],
+      '海南省': [110.20, 20.02],
+      '河北省': [114.30, 38.02],
+      '河南省': [113.40, 34.46],
+      '黑龙江省': [128.36, 45.44],
+      '湖北省': [112.27, 30.15],
+      '湖南省': [112.59, 28.12],
+      '吉林省': [125.19, 43.54],
+      '江苏省': [118.46, 32.03],
+      '江西省': [115.55, 28.40],
+      '辽宁省': [123.25, 41.48],
+      '内蒙古': [108.41, 40.48],
+      '宁夏回族自治区': [106.16, 38.27],
+      '青海省': [101.48, 36.38],
+      '山东省': [118.00, 36.40],
+      '山西省': [112.33, 37.54],
+      '陕西省': [108.57, 34.17],
+      '上海市': [121.29, 31.14],
+      '海南': [108.77, 19.10],
+      '四川省': [104.04, 30.40],
+      '天津市': [117.12, 39.02],
+      '西藏自治区': [91.08, 29.39],
+      '新疆维吾尔自治区': [87.36, 43.45],
+      '云南省': [102.42, 25.04],
+      '浙江省': [120.10, 30.16],
+      '澳门': [113.5, 22.19],
+      '台湾省': [121.21, 23.53]
+};
+
+var convertData = function (data) {
+    var res = [];
+    for (var i = 0; i < data.length; i++) {
+        var geoCoord = geoCoordMap[data[i].name];
+        if (geoCoord) {
+            res.push({
+                name: data[i].name,
+                value: geoCoord.concat(data[i].value)
+            });
+        }
+    }
+    return res;
+};
+
+option = {
+    backgroundColor: '#404a59',
+    title: {
+        text: '交易转出地点',
+        subtext: '',
+        sublink: 'http://www.pm25.in',
+        left: 'center',
+        textStyle: {
+            color: '#fff'
+        }
+    },
+    tooltip : {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        y: 'bottom',
+        x:'right',
+        data:['交易地点'],
+        textStyle: {
+            color: '#fff'
+        }
+    },
+    geo: {
+        map: 'china',
+        label: {
+            emphasis: {
+                show: false
+            }
+        },
+        roam: true,
+        itemStyle: {
+            normal: {
+                areaColor: '#323c48',
+                borderColor: '#111'
+            },
+            emphasis: {
+                areaColor: '#2a333d'
+            }
+        }
+    },
+    series : [
+        {
+            name: '交易地点',
+            type: 'scatter',
+            coordinateSystem: 'geo',
+            data: convertData(data),
+            symbolSize: function (val) {
+                return val[2] *3;
+            },
+            label: {
+                normal: {
+                    formatter: '{b}',
+                    position: 'right',
+                    show: false
+                },
+                emphasis: {
+                    show: true
+                }
+            },
+            itemStyle: {
+                normal: {
+                    color: '#ddb926'
+                }
+            }
+        },
+        {
+            name: 'Top 5',
+            type: 'effectScatter',
+            coordinateSystem: 'geo',
+            data: convertData(data.sort(function (a, b) {
+                return b.value - a.value;
+            }).slice(0, 6)),
+            symbolSize: function (val) {
+                return val[2] / 10;
+            },
+            showEffectOn: 'render',
+            rippleEffect: {
+                brushType: 'stroke'
+            },
+            hoverAnimation: true,
+            label: {
+                normal: {
+                    formatter: '{b}',
+                    position: 'right',
+                    show: true    
+                }
+            },
+            itemStyle: {
+                normal: {
+                    color: '#f4e925',
+                    shadowBlur: 10,
+                    shadowColor: '#333'
+                }
+            },
+            zlevel: 1
+        }
+    ]
+};
+
+
+myChart.setOption(option, true);
+    
+</script>
+</div>
+<div class="right_act">
+    <div class="right_up_actt" style="overflow-y:scroll;height: 400px;">
+        <table class="table table-hover" >
+            <tr class="info" id="showTransTableTitle">
+                <td>交易ID</td>
+                <td>事件日期</td>
+                <!-- <td>转入卡号</td> -->
+                <td>转出卡号</td>
+                <td>交易金额</td>
+                <td>行为认证</td>
+            </tr>
+            <tr class="info" ng-repeat="item in items">
+                <td>{{item.id}}</td>
+                <td>{{item.eventDt|date:'M-d'}}</td>
+                <!-- <td>{{item.tranInCardNum}}</td> -->
+                <td>{{item.tranOutCardNum}}</td>
+                <td>{{item.txAmt}}</td>
+                <td>{{item.equSign}}</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="right_mid_act">
+    </div>
+
+    <div class="right_down_act" style="height:100%">
+      <div id="chart" style="width: 100%;height: 50%;"></div>
+    </div>
+	
+</div>
+<!--
+myChart.setOption(option, true);
+>    
+    </script>
+
+
+
+</div>
+</div>
+</div>
+-->
+

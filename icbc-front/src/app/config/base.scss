@@ -1,0 +1,33 @@
+// 统一提示颜色
+$errMsg: #FF0033;
+$successMsg: #33CC66;
+
+// 统一边框颜色
+$cborder: rgb(204, 204, 204);
+
+* {
+	margin:0;
+	padding: 0;
+}
+
+html {
+  font-family: 'Hiragino Sans GB', 'Lantinghei SC', 'Microsoft Yahei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+// loading
+.app-content-loading {
+  text-align: center;
+  background: #fff;
+  top: 0;bottom: 0;left: 0;right: 0;
+  position: absolute;
+}
+
+.loading-spinner {
+  position: relative;
+  font-size: 50px;
+  top: 70px;
+}
+
+@media print {
+ .noprn{ display:none;}
+}

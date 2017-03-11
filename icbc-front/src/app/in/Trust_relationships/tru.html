@@ -1,0 +1,81 @@
+
+<div class="all_things">
+  <!-- 为我要显示的内容准备一个具备大小（宽高）的Dom -->
+	<div class = "leftdev" >
+
+		<h3>
+			信任社区
+		</h3>
+		
+		<div class = "graph" id="container" >		
+		</div>	
+	</div>
+	<div class = "rightdev">
+		<div class="transac_show">
+			<h3>
+				信任关系
+			</h3>
+			
+
+	        <table class="table table-hover">
+	            <tr class="info">
+	                <th>付款用户id</th>
+	                <th>收款用户id</th>
+	                <th></th>
+	            </tr>
+	            <tr class="info">
+	                <td><input type="text" id ="user1" ng-model = "user1"></td>
+	                <td><input type="text" id ="user2" ng-model = "user2"></td>
+	                <td><button type="button" class="btn btn-default"  ng-click="getSome()">查询信任值</button></td>
+	            </tr>
+	            
+	        </table>
+		</div>
+
+		<div class="trust_show">
+			
+			<table class="table table-hover">
+			    <tr class = "info">
+			        <th>付款方id</th>
+			        <th>收款方id</th>
+			        <th>信任值</th>
+			    </tr>
+			    <tr class = "info">
+			        <td>{{data[0].user1}}</td>
+			        <td>{{data[0].user2}}</td>
+			        <td>{{data[0].trust}}</td>
+
+			    </tr>
+			</table>
+			
+		</div>
+
+		<div class="right_act" style="width: 100%">
+  			<div class="right_up_actt" style="overflow-y:scroll;height: 220px;width: 100%;">
+        		<table class="table table-hover" >
+            		<tr class="info" id="showTransTableTitle">
+	               		<td>付款方</td>
+			            <td>收款方</td>
+			            <!-- <td>转入卡号</td> -->
+			            <td>交易时间</td>
+			            <td>交易金额</td>
+			            
+			            <td>是否通过</td>
+	            	</tr>
+	            	<tr class="info" ng-repeat="item in items">
+		                <td>{{item.tranInCardNum}}</td>
+						<td>{{item.tranOutCardNum}}</td>
+		                <td>{{item.eventDt|date:'M-d'}}</td>
+		                <!-- <td>{{item.tranInCardNum}}</td> -->
+		                
+		                <td>{{item.txAmt}}</td>
+		                <td>{{item.truSign}}</td>
+	            	</tr>
+	        	</table>
+	    	</div>
+
+    		<div class="rigth_down_act"></div>
+		</div>
+
+	</div>
+</div>
