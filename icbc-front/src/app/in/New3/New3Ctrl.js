@@ -62,6 +62,7 @@ export default ($scope, $rootScope, qService, TransactionRes, ToasterTool, BASE_
                 $scope.Tmoney= angular.copy(total_money);
                 $scope.Ttimes= angular.copy(total_times);
                 $scope.MaxN= angular.copy(max_n);
+                $scope.dan = angular.copy(data.data['txAmt']);
             }
         } else {
             ToasterTool.error("无结果");
@@ -108,7 +109,7 @@ export default ($scope, $rootScope, qService, TransactionRes, ToasterTool, BASE_
                 }
             },
             title: {
-                text: 'Live random data'
+                text: '实时交易'
             },
             xAxis: {
                 type: 'datetime',

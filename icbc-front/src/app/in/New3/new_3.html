@@ -40,9 +40,9 @@
 				<div class="visual">
 					<i class="am-icon-comments-o"></i>
 				</div>
-				<div class="desc" style="color: white"> 交易总额 </div>
+				<div class="desc" style="color: white"> 单笔交易额 </div>
 				<div class="details">
-					<div class="number"> 1349 444</div>
+					<div class="number"> {{dan}}</div>
 				</div>
 			</div>
 		</div>
@@ -55,21 +55,21 @@
 	<div class="row">
 		<div class="am-u-sm-12 row-mb">
 			<div class="tpl-portlet">
-				<div class="tpl-portlet-title">
+				<!-- <div class="tpl-portlet-title">
 					<div class="tpl-caption font-red ">
 						<i class="am-icon-bar-chart"></i>
 						<span>拦截与放行</span>
 					</div>
-					<!--<div class="actions">-->
-					<!--<ul class="actions-btn">-->
-					<!--<li class="purple-on">昨天</li>-->
-					<!--<li class="green">前天</li>-->
-					<!--<li class="dark">本周</li>-->
-					<!--</ul>-->
-					<!--</div>-->
-				</div>
+					<div class="actions">
+					<ul class="actions-btn">
+					<li class="purple-on">昨天</li>
+					<li class="green">前天</li>
+					<li class="dark">本周</li>
+					</ul>
+					</div>
+				</div> -->
 				<div class="tpl-scrollable">
-					<div class="number-stats">
+					<!-- <div class="number-stats">
 						<div class="stat-number am-fl am-u-md-6">
 							<div class="title am-text-right"> 总交易数 </div>
 							<div class="number am-text-right am-text-warning"> 2460 </div>
@@ -79,11 +79,11 @@
 							<div class="number am-text-success"> 1234 </div>
 						</div>
 
-					</div>
+					</div> -->
 					<table class="am-table tpl-table" style="font-size: 20px">
 						<thead>
 							<tr class="tpl-table-uppercase">
-								<td>交易日期</td>
+								<td>交易时间</td>
 								<td>客户编号</td>
 								<td>转入卡号</td>
 								<td>转出卡号</td>
@@ -98,7 +98,8 @@
 							<tr ng-repeat="item in items | orderBy:'-id'">
 								
 								
-								<td>{{item.eventDt|date:'y-M-d'}}</td>
+								<!-- <td>{{item.eventDt|date:'y-M-d HH:mm:ss'}}</td> -->
+								<td>{{item.eventDt|date:'HH:mm:ss'}}</td>
 								<td>{{item.custNum}}</td>
 								<td>{{item.tranInCardNum}}</td>
 								<td>{{item.tranOutCardNum}}</td>
@@ -106,7 +107,12 @@
 								<td>{{item.tranOutAcctZoneNum}}</td>
 								<td>{{item.tranInAcctZoneNum}}</td>
 								<td>{{item.custIpAddr}}</td>
-								<td>{{item.androidSysPadInd}}</td>
+								<td>
+									<div ng-if="item.androidSysPadInd == 0">未知</div>
+									<div ng-if="item.androidSysPadInd == 1">移动端</div>
+									<div ng-if="item.androidSysPadInd == 2">PC端</div>
+<!-- 								{{item.androidSysPadInd}} -->
+								</td>
 							</tr>
 						</tbody>
 					</table>

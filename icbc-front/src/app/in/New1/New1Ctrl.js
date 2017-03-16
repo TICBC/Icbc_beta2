@@ -23,7 +23,7 @@ export default ($scope, $rootScope, qService, TransactionRes, ToasterTool,$inter
         getByIdLoop(n);
         
         
-    }, 3000);
+    }, 3000,2);
     function getByIdLoop(id) {
         // if (isNull($scope.params.value)) {
         //  ToasterTool.warning("输入不能为空");
@@ -84,8 +84,8 @@ export default ($scope, $rootScope, qService, TransactionRes, ToasterTool,$inter
 	var myChart = echarts.init(document.getElementById('main'));
 	var xData = function() {
 		var data = [];
-		for (var i = 1; i < 13; i++) {
-			data.push(i + "月份");
+		for (var i = 0; i < 25; i++) {
+			data.push(i + "时");
 		}
 		return data;
 	}();
@@ -237,7 +237,19 @@ export default ($scope, $rootScope, qService, TransactionRes, ToasterTool,$inter
 				5208,
 				3372,
 				2484,
-				4078
+				4078,
+                709,
+                1917,
+                2455,
+                2610,
+                1719,
+                1433,
+                1544,
+                3285,
+                5208,
+                3372,
+                2484,
+                4078
 				],
 			},
 
@@ -270,7 +282,19 @@ export default ($scope, $rootScope, qService, TransactionRes, ToasterTool,$inter
 				1001,
 				951,
 				381,
-				220
+				220,
+                327,
+                1776,
+                507,
+                1200,
+                800,
+                482,
+                204,
+                1390,
+                1001,
+                951,
+                381,
+                220
 				]
 			}, {
 				"name": "总数",
@@ -303,7 +327,19 @@ export default ($scope, $rootScope, qService, TransactionRes, ToasterTool,$inter
 				6209,
 				4323,
 				2865,
-				4298
+				4298,
+                1036,
+                3693,
+                2962,
+                3810,
+                2519,
+                1915,
+                1748,
+                4675,
+                6209,
+                4323,
+                2865,
+                4298
 				]
 			},
 			]
@@ -316,7 +352,7 @@ export default ($scope, $rootScope, qService, TransactionRes, ToasterTool,$inter
         // 指定图表的配置项和数据
         var option2 = {
             title: {
-                "text": '交易拦截率',
+                "text": '交易放行率',
                 "x": '50%',
                 "y": '45%',
                 textAlign: "center",
@@ -327,7 +363,7 @@ export default ($scope, $rootScope, qService, TransactionRes, ToasterTool,$inter
                 "subtextStyle": {
                     "fontWeight": 'bold',
                     "fontSize": 32,
-                    "color": '#3ea1ff'
+                    "color": '#34f1a4'
                 }
             },
             series: [
@@ -337,7 +373,7 @@ export default ($scope, $rootScope, qService, TransactionRes, ToasterTool,$inter
                     "radius": ['50%', '70%'],
                     "avoidLabelOverlap": false,
                     "startAngle": 225,
-                    "color": ["#00a2ff", "transparent"],
+                    "color": ["#34f1a4", "transparent"],
                     "hoverAnimation": false,
                     "legendHoverLink": false,
                     "label": {
@@ -446,7 +482,7 @@ export default ($scope, $rootScope, qService, TransactionRes, ToasterTool,$inter
                 "subtextStyle": {
                     "fontWeight": 'bold',
                     "fontSize": 20,
-                    "color": '#3ea1ff'
+                    "color": '#e42a0a'
                 }
             },
             series: [
@@ -456,7 +492,7 @@ export default ($scope, $rootScope, qService, TransactionRes, ToasterTool,$inter
                     "radius": ['50%', '70%'],
                     "avoidLabelOverlap": false,
                     "startAngle": 225,
-                    "color": ["#00a2ff", "transparent"],
+                    "color": ["#e42a0a", "transparent"],
                     "hoverAnimation": false,
                     "legendHoverLink": false,
                     "label": {
@@ -565,7 +601,7 @@ export default ($scope, $rootScope, qService, TransactionRes, ToasterTool,$inter
                 "subtextStyle": {
                     "fontWeight": 'bold',
                     "fontSize": 20,
-                    "color": '#3ea1ff'
+                    "color": '#e42a0a'
                 }
             },
             series: [
@@ -575,7 +611,7 @@ export default ($scope, $rootScope, qService, TransactionRes, ToasterTool,$inter
                     "radius": ['50%', '70%'],
                     "avoidLabelOverlap": false,
                     "startAngle": 225,
-                    "color": ["#00a2ff", "transparent"],
+                    "color": ["#e42a0a", "transparent"],
                     "hoverAnimation": false,
                     "legendHoverLink": false,
                     "label": {
@@ -684,7 +720,7 @@ export default ($scope, $rootScope, qService, TransactionRes, ToasterTool,$inter
                 "subtextStyle": {
                     "fontWeight": 'bold',
                     "fontSize": 20,
-                    "color": '#3ea1ff'
+                    "color": '#e42a0a'
                 }
             },
             series: [
@@ -694,7 +730,7 @@ export default ($scope, $rootScope, qService, TransactionRes, ToasterTool,$inter
                     "radius": ['50%', '70%'],
                     "avoidLabelOverlap": false,
                     "startAngle": 225,
-                    "color": ["#00a2ff", "transparent"],
+                    "color": ["#e42a0a", "transparent"],
                     "hoverAnimation": false,
                     "legendHoverLink": false,
                     "label": {
