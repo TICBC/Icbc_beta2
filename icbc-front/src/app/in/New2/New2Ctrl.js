@@ -1,85 +1,344 @@
 export default ($scope, $rootScope, qService, TransactionRes, ToasterTool,$interval) => {
 	'ngInject';
 //	$state.go("in.result");
-$scope.getAll = () => {
-		// if (isNull($scope.params.value)) {
-		// 	ToasterTool.warning("输入不能为空");
-		// 	return;
-		// }
-		$rootScope.loading = false;
-		
-		qService.httpGet(TransactionRes.ResultsAll, {}, {}).then((data) => {
-			if (data.success) {
-	        	//console.log("hehe");
-	        	if (data.data == null) {
-	        		ToasterTool.error("无结果");
-	        		$scope.items = null;
-	        	} else {
-	            // ToasterTool.success("查找成功");
-	            $scope.items = data.data;
-	            // ToasterTool.success(data.data);
-	        }
-	    } else {
-	    	ToasterTool.error("无结果");
-	    	$scope.items = null;
-	    }
-	}, (err) => {
-		ToasterTool.error("网络错误");
-		$scope.items = null;
-	}).finally(() => {
-		$rootScope.loading = false;
-	});
 
-}
-$scope.getAll();
+    $scope.pie_data = [
+                {value:33533, name:'PC端'},
+                {value:51046, name:'移动端'},
+                {value:23444, name:'未知'}
+            ];
+
+    // function myFunction()
+    // {
+    // alert("Hello World!");
+    // }
+    $scope.fun0 = function () {
+        //alert("fun1");
+        $scope.pie_data = [
+                {value:33533, name:'PC端'},
+                {value:51046, name:'移动端'},
+                {value:23444, name:'未知'}
+            ];
+        $scope.drawPie();
+    }
+    $scope.fun1 = function () {
+        //alert("fun1");
+        $scope.pie_data = [
+                {value:120434, name:'PC端'},
+                {value:234219, name:'移动端'},
+                {value:128904, name:'未知'}
+            ];
+        $scope.drawPie();
+    }
+    $scope.fun2 = function () {
+        //alert("fun1");
+        $scope.pie_data = [
+                {value:520434, name:'PC端'},
+                {value:934219, name:'移动端'},
+                {value:428904, name:'未知'}
+            ];
+        $scope.drawPie();
+    }
+    $scope.fun3 = function () {
+        //alert("fun1");
+        $scope.pie_data = [
+                {value:1220434, name:'PC端'},
+                {value:1434219, name:'移动端'},
+                {value:1028904, name:'未知'}
+            ];
+        $scope.drawPie();
+    }
+    $scope.myFunction = function () {
+        alert("Hello World!");
+        //$scope.selectedRow = index;
+    }
+    $scope.time0 = function(){
+        $scope.drawHist0();
+    }
+    $scope.time1 = function(){
+        $scope.drawHist1();
+    }
+    $scope.time2 = function(){
+        var myChart = echarts.init(document.getElementById('main2'));
+       
+        // 指定图表的配置项和数据
+//        app.title = '多 ';
+
+        var colors = ['#5793f3', '#d14a61', '#675bba'];
+
+        var option = {
+            color: colors,
+
+            tooltip: {
+                trigger: 'axis'
+            },
+            grid: {
+                right: '20%'
+            },
+            toolbox: {
+                feature: {
+                    dataView: {show: true, readOnly: false},
+                    restore: {show: true},
+                    saveAsImage: {show: true}
+                }
+            },
+            legend: {
+                data:['总交易额','交易次数','放行次数']
+            },
+            xAxis: [
+                {
+                    type: 'category',
+                    axisTick: {
+                        alignWithLabel: true
+                    },
+                    data: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value',
+                    name: '总交易额(万元)',
+                    min: 0,
+                    max: 250,
+                    position: 'right',
+                    axisLine: {
+                        lineStyle: {
+                            color: colors[0]
+                        }
+                    },
+                    axisLabel: {
+                        formatter: '{value}'
+                    }
+                },
+                {
+                    type: 'value',
+                    name: '交易次数(万次)',
+                    min: 0,
+                    max: 250,
+                    position: 'right',
+                    offset: 80,
+                    axisLine: {
+                        lineStyle: {
+                            color: colors[1]
+                        }
+                    },
+                    axisLabel: {
+                        formatter: '{value}'
+                    }
+                },
+                {
+                    type: 'value',
+                    name: '放行次数(万次）',
+                    position: 'left',
+                    axisLine: {
+                        lineStyle: {
+                            color: colors[2]
+                        }
+                    },
+                    axisLabel: {
+                        formatter: '{value}'
+                    }
+                }
+            ],
+            series: [
+                {
+                    name:'总交易额',
+                    type:'bar',
+                    data:[2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3]
+                },
+                {
+                    name:'交易次数',
+                    type:'bar',
+                    yAxisIndex: 1,
+                    data:[2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3]
+                },
+                {
+                    name:'放行次数',
+                    type:'line',
+                    yAxisIndex: 2,
+                    data:[1.1, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4, 23.0, 16.5, 12.0, 4.6]
+                }
+            ]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+          myChart.setOption(option);
+    }
+    $scope.drawHist0 = () => {
+        var myChart2_3_1 = echarts.init(document.getElementById('main2'));
+        var option2_3_1 = {
+         title: {
+             text: '交易金额监控',
+             subtext: ''
+         },
+         tooltip: {
+             trigger: 'axis',
+             axisPointer: {
+                 type: 'shadow'
+             }
+         },
+         legend: {
+             data: ['放行', '拦截']
+         },
+         grid: {
+             left: '3%',
+             right: '4%',
+             bottom: '3%',
+             containLabel: true
+         },
+         xAxis: {
+             type: 'value',
+             boundaryGap: [0, 0.01]
+         },
+         yAxis: {
+             type: 'category',
+             data: ['0-3时','3-6时','6-9时','9-12时','12-15时','15-18时','18-21时','21-14时']
+         },
+         series: [
+         {
+             name: '放行',
+             type: 'bar',
+             data: [12203, 23489, 20234, 12970, 12744,12000,31354,23219]
+         },
+         {
+             name: '拦截',
+             type: 'bar',
+             data: [9325, 2348, 3100, 1594, 1141,1054,2543,3028]
+         }
+         ]
+        };
+        myChart2_3_1.setOption(option2_3_1);
+    }
+    $scope.drawHist1 = () => {
+        var myChart2_3 = echarts.init(document.getElementById('main2'));
+        var option2_3 = {
+         title: {
+             text: '交易金额监控',
+             subtext: ''
+         },
+         tooltip: {
+             trigger: 'axis',
+             axisPointer: {
+                 type: 'shadow'
+             }
+         },
+         legend: {
+             data: ['放行', '拦截']
+         },
+         grid: {
+             left: '3%',
+             right: '4%',
+             bottom: '3%',
+             containLabel: true
+         },
+         xAxis: {
+             type: 'value',
+             boundaryGap: [0, 0.01]
+         },
+         yAxis: {
+             type: 'category',
+             data: ['周一','周二','周三','周四','周五','周六','周日']
+         },
+         series: [
+         {
+             name: '放行',
+             type: 'bar',
+             data: [182203, 232489, 290234, 1024970, 132744,122000,351354]
+         },
+         {
+             name: '拦截',
+             type: 'bar',
+             data: [9325, 23438, 31000, 11594, 14141,10054,25643]
+         }
+         ]
+        };
+        myChart2_3.setOption(option2_3);
+    }
 	// $scope.new1_hist();
-	
-	var myChart = echarts.init(document.getElementById('main2'));
+	$scope.drawPie = () => {
+        var myChart2_1 = echarts.init(document.getElementById('main2'));
+        var option = {
+            title : {
+                text: '交易客户端来源',
+                subtext: '',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data: ['PC端','移动端','未知']
+            },
+            series : [
+                {
+                    name: '交易来源',
+                    type: 'pie',
+                    radius : '55%',
+                    center: ['50%', '60%'],
+                    data:$scope.pie_data,
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
 
-	var option = {
-		title: {
-			text: '交易金额监控',
-			subtext: '数据来自网络'
-		},
-		tooltip: {
-			trigger: 'axis',
-			axisPointer: {
-				type: 'shadow'
-			}
-		},
-		legend: {
-			data: ['移动端', 'PC端']
-		},
-		grid: {
-			left: '3%',
-			right: '4%',
-			bottom: '3%',
-			containLabel: true
-		},
-		xAxis: {
-			type: 'value',
-			boundaryGap: [0, 0.01]
-		},
-		yAxis: {
-			type: 'category',
-			data: ['周一','周二','周三','周四','周五','周六','周日','总量']
-		},
-		series: [
-		{
-			name: '移动端',
-			type: 'bar',
-			data: [18203, 23489, 29034, 104970, 131744,122000,151354,630230]
-		},
-		{
-			name: 'PC端',
-			type: 'bar',
-			data: [19325, 23438, 31000, 121594, 134141,210054,125643,681807]
-		}
-		]
-	};
-	
-	// 为echarts对象加载数据 
-	myChart.setOption(option);
+    
+    // 为echarts对象加载数据 
+    myChart2_1.setOption(option);
+    }
+
+	$scope.drawPie();
+
+	// var option = {
+	// 	title: {
+	// 		text: '交易金额监控',
+	// 		subtext: '数据来自网络'
+	// 	},
+	// 	tooltip: {
+	// 		trigger: 'axis',
+	// 		axisPointer: {
+	// 			type: 'shadow'
+	// 		}
+	// 	},
+	// 	legend: {
+	// 		data: ['移动端', 'PC端']
+	// 	},
+	// 	grid: {
+	// 		left: '3%',
+	// 		right: '4%',
+	// 		bottom: '3%',
+	// 		containLabel: true
+	// 	},
+	// 	xAxis: {
+	// 		type: 'value',
+	// 		boundaryGap: [0, 0.01]
+	// 	},
+	// 	yAxis: {
+	// 		type: 'category',
+	// 		data: ['周一','周二','周三','周四','周五','周六','周日','总量']
+	// 	},
+	// 	series: [
+	// 	{
+	// 		name: '移动端',
+	// 		type: 'bar',
+	// 		data: [18203, 23489, 29034, 104970, 131744,122000,151354,630230]
+	// 	},
+	// 	{
+	// 		name: 'PC端',
+	// 		type: 'bar',
+	// 		data: [19325, 23438, 31000, 121594, 134141,210054,125643,681807]
+	// 	}
+	// 	]
+	// };
+    
 
 	var myChart2 = echarts.init(document.getElementById('main2_2'));
 	var geoCoordMap = {
@@ -1003,7 +1262,7 @@ var option2 = {
         data: []
     },
     series: [{
-        name: 'pm2.5',
+        name: '交易量',
         type: 'scatter',
         coordinateSystem: 'geo',
         data: convertedData[0],
@@ -1073,7 +1332,7 @@ myChart2.on('brushselected', renderBrushed);
 myChart2.setOption(option2);
 
 setTimeout(function() {
-    myChart.dispatchAction({
+    myChart2.dispatchAction({
         type: 'brush',
         areas: [{
             geoIndex: 0,

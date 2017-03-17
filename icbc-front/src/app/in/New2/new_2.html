@@ -1,9 +1,46 @@
 <div class="container-fluid" style="height:100%;">
 	<div class="row-fluid" style="height:100%;">
 		<div class="col-md-4" style="height:100%;">
+
+			<div class="btn-group">
+				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					交易设备分析 <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu">
+					<li><a href="" ng-click='fun0()'>当日</a></li>
+	    			<li><a href="" ng-click='fun1()'>近三天</a></li>
+	    			<li><a href="" ng-click='fun2()'>近一周</a></li>
+	    			<li><a href="" ng-click='fun3()'>近两周</a></li>
+					<!-- <li ng-click='fun0()'>当天</li>
+					<li><button type="button" class="btn btn-default" ng-click='fun1()'>  近三天  </button></li>
+					<li><button type="button" class="btn btn-default" ng-click='fun1()'>近一周</button></li>
+					<li><button type="button" class="btn btn-default" ng-click='fun1()'>近两周</button></li> -->
+				</ul>
+			</div>
+
+			<div class="btn-group">
+			  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					交易时间分析 <span class="caret"></span>
+				</button>
+			  <ul class="dropdown-menu">
+			    	<li><a href="" ng-click='time0()'>按日分析</a></li>
+	    			<li><a href="" ng-click='time1()'>按周分析</a></li>
+	    			<li><a href="" ng-click='time2()'>按年分析</a></li>
+			  </ul>
+			</div>
+			<!-- 
+			<div class="btn-group" role="group" aria-label="...">
+			  <button type="button" class="btn btn-default" ng-click='fun0()'>当天</button>
+			  <button type="button" class="btn btn-default" ng-click='fun1()'>近三天</button>
+			  <button type="button" class="btn btn-default" ng-click='fun1()'>近一周</button>
+			  <button type="button" class="btn btn-default" ng-click='fun1()'>近两周</button>
+			</div> -->
 			<div id="main2" style="width: 100%;height:100%;"></div>
     		<script type="text/javascript">
-    
+    			// function myFunction()
+			    // {
+			    //     alert("Hello World!");
+			    // }
   			</script>
 		</div>
 		<div class="col-md-8" style="height:100%;">
