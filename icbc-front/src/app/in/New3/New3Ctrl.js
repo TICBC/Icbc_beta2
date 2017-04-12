@@ -2,28 +2,39 @@ export default ($scope, $rootScope, qService, TransactionRes, ToasterTool, BASE_
 	'ngInject';
     //	$state.go("in.result");
 	//交易数字统计 start
-    var total_money=0;
-    var total_times = 0;
-    var max_n = 0;
+    var total_money=25348.75;
+    var total_times = 67;
+    var max_n = 8000;
     //交易数字统计 end
 	
 
     // 定时查询ById   -- start
     // var ids = [1,2,3,4,5,6,7,8,9,10,11,12];
-    var value;
+    $scope.Tmoney= total_money;
+    $scope.Ttimes= total_money;
+    $scope.MaxN= max_n;
+    $scope.dan = 467;
+
+    var value,today=0;
     var id_cur,i=0,n=0;
     var equ=0,act=0,tru=0;
     var arrayItem = new Array();
     var arrayLength = 8;
     var timer = $interval(function () {
         // i = n%5;
-        i++;
-        n = i%120;
+        var p = Math.random();
+        if (p>0.6){
+            i++;
+            n = i%120;
 
-        getByIdLoop(n);
+            getByIdLoop(n);
+        }
+        
         
         
     }, 3000);
+
+    
     function getByIdLoop(id) {
         // if (isNull($scope.params.value)) {
         //  ToasterTool.warning("输入不能为空");
@@ -40,6 +51,15 @@ export default ($scope, $rootScope, qService, TransactionRes, ToasterTool, BASE_
                 ToasterTool.error("无结果");
                 // $scope.items = null;
             } else {
+                //获取当前时间
+                today = new Date();
+                var hh = today.getHours();
+                var mm = today.getMinutes();
+                var ss = today.getSeconds();
+                // h = checkTime(hh);
+                // m = checkTime(mm);
+                // s = checkTime(ss);
+                var showTime = hh+":"+mm+":"+ss;
                 // [data.data];
                 total_times++;
                 total_money = total_money + data.data['txAmt'];
@@ -47,11 +67,13 @@ export default ($scope, $rootScope, qService, TransactionRes, ToasterTool, BASE_
                     max_n = data.data['txAmt'];
                 }
                 if(arrayItem.length < arrayLength){
+                    data.data.eventDt = showTime;
                     arrayItem.push(data.data);
                 }else{
                     for (var i = 0 ; i < arrayLength - 1; i++) {
                         arrayItem[i] = arrayItem[i+1];
                     }
+                    data.data.eventDt = showTime;
                     arrayItem[arrayLength-1] = data.data;
                     value = data.data.txAmt
                     console.log(value)
@@ -100,9 +122,17 @@ export default ($scope, $rootScope, qService, TransactionRes, ToasterTool, BASE_
                         // set up the updating of the chart each second
                         var series = this.series[0];
                         setInterval(function () {
-                            var x = (new Date()).getTime(), // current time
+                            // var x = (new Date()).getTime(), // current time
                                 // y = Math.random();
+                            var x,
                                 y = value;
+                        if(today != 0){
+                            x = today.getTime();
+                        }else{
+                            x = today;
+                        }
+                        today = 0;
+
                             series.addPoint([x, y], true, true);
                         }, 3000);
                     }
